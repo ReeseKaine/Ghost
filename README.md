@@ -80,8 +80,9 @@ Windows, cross-built from Linux or WSL (needs `mingw-w64`: `sudo apt install min
     bash host/get_sdl.sh win         # once
     bash host/build_win.sh           # -> host/win/ghost.exe + SDL3.dll
 
-The release packages are made by `bash make_linux_release.sh VERSION` (Linux) and by zipping
-`host/win` as listed in the upload guide (Windows).
+The release packages are made by `bash make_windows_release.sh VERSION` and
+`bash make_linux_release.sh VERSION` (into `releases/`; the version must match `GHOST_VERSION` in
+`host/g4launch.h`).
 
 ## Credits
 

@@ -8,7 +8,8 @@
 # to start. The program needs glibc 2.38+ (SDL's own requirement on this build machine).
 set -e
 cd "$(dirname "$0")"
-V="${1:?usage: make_linux_release.sh VERSION   (e.g. 0.1.0)}"
+V="${1:?usage: make_linux_release.sh VERSION   (e.g. 0.1.1)}"
+grep -q "GHOST_VERSION \"$V\"" host/g4launch.h || { echo "host/g4launch.h says another version: set GHOST_VERSION to \"$V\" first"; exit 1; }
 [ -f host/linux/sdl/lib/libSDL3.so.0 ] || { echo "SDL3 missing in host/linux/sdl: run  bash host/get_sdl.sh linux"; exit 1; }
 python3 -I make_licenses.py
 bash host/build.sh
