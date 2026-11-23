@@ -378,7 +378,7 @@ int launch_run(const char *base, launch_choice *ch)
     ch->vol_music = clamp10(ch->vol_music); ch->vol_sfx = clamp10(ch->vol_sfx); ch->vol_voice = clamp10(ch->vol_voice);
     scan_packs(base);
     if (!SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMEPAD)) { fprintf(stderr, "launcher: %s\n", SDL_GetError()); return 0; }
-    win = SDL_CreateWindow("Gauntlet 4 port - launcher", 960, 720, SDL_WINDOW_RESIZABLE | (getenv("G4HIDDEN") ? SDL_WINDOW_HIDDEN : 0));
+    win = SDL_CreateWindow("Ghost " GHOST_VERSION " - launcher", 960, 720, SDL_WINDOW_RESIZABLE | (getenv("G4HIDDEN") ? SDL_WINDOW_HIDDEN : 0));
     ren = win ? SDL_CreateRenderer(win, NULL) : NULL;
     if (!ren) { fprintf(stderr, "launcher: %s\n", SDL_GetError()); SDL_Quit(); return 0; }
     SDL_SetRenderLogicalPresentation(ren, 320, 240, SDL_LOGICAL_PRESENTATION_LETTERBOX);
@@ -508,12 +508,12 @@ int launch_run(const char *base, launch_choice *ch)
         }
         if (rec_proc) rec_poll(msg, sizeof msg);
         {   /* draw */
-            static const char *g4s[] = {"not found", "found", "August 1993: not supported", "found (unknown version)"};
+            static const char *g4s[] = {"not found", "found", "August 1993: no", "unknown version"};
             static const char *aspects[4] = {"4:3 (TV)", "square pixels", "stretch", "sharp (whole steps)"};
             static const char *displays[3] = {"window", "fullscreen", "borderless"};
             char line[96], t[64]; int k, row, n = page_count(page);
             SDL_SetRenderDrawColor(ren, 12, 10, 20, 255); SDL_RenderClear(ren);
-            text_at(ren, 2, 1, page == 1 ? "LAUNCHER - VIDEO" : page == 2 ? "LAUNCHER - AUDIO" : "GAUNTLET 4 PORT - LAUNCHER", 230, 200, 90);
+            text_at(ren, 2, 1, page == 1 ? "GHOST - VIDEO" : page == 2 ? "GHOST - AUDIO" : "GHOST " GHOST_VERSION " - LAUNCHER", 230, 200, 90);
             for (k = 0, row = 3; k < n; k++, row += 2) {
                 int on = k == sel, it = PAGE_ITEMS[page][k];
                 if (on) { SDL_FRect bar = {8, (float)(row * 8 - 2), 304, 12}; SDL_SetRenderDrawColor(ren, 60, 40, 90, 255); SDL_RenderFillRect(ren, &bar); }
@@ -521,7 +521,7 @@ int launch_run(const char *base, launch_choice *ch)
                 line[0] = 0;
                 if (it == M_HOST) snprintf(line, sizeof line, "<%d players>", ch->players);
                 if (it == M_JOIN) { tail(t, sizeof t, ch->join[0] ? ch->join : "(type address)", 15); snprintf(line, sizeof line, "%s%s", t, editing && (frame / 20) % 2 ? "_" : ""); }
-                if (it == M_FOLDER) { tail(t, sizeof t, strcmp(ch->rom_dir, ".") ? ch->rom_dir : "(next to game)", 16); snprintf(line, sizeof line, "%s", t); }
+                if (it == M_FOLDER) { tail(t, sizeof t, strcmp(ch->rom_dir, ".") && strcmp(ch->rom_dir, "./") ? ch->rom_dir : "(next to game)", 16); snprintf(line, sizeof line, "%s", t); }
                 if (it == M_VIDEO || it == M_AUDIO) snprintf(line, sizeof line, ">");
                 if (it == M_MUSIC) snprintf(line, sizeof line, "< %2d >%s", ch->vol_music, ch->vol_music ? "" : " off");
                 if (it == M_SFX) snprintf(line, sizeof line, "< %2d >", ch->vol_sfx);
@@ -538,25 +538,35 @@ int launch_run(const char *base, launch_choice *ch)
                 SDL_RenderDebugText(ren, 16, 160, "next to the game (see the README).");
             }
             row = 21;
-            if (page == 0) {   /* what was found, 10 px apart */
-                int y = 164;
+            if (page == 0) {   /* what was found: every line fits the 38 columns from x 16 */
+                int y = 124;
                 #define LINE(str, ok) do { SDL_SetRenderDrawColor(ren, (ok) == 1 ? 120 : (ok) == 2 ? 255 : 160, (ok) == 1 ? 230 : (ok) == 2 ? 120 : 160, (ok) == 1 ? 120 : (ok) == 2 ? 120 : 160, 255); \
                                            SDL_RenderDebugText(ren, 16, (float)y, str); y += 9; } while (0)
+                #define OK(f) (have_file(base, f) ? "ok" : "--")
                 SDL_SetRenderDrawColor(ren, 230, 200, 90, 255); SDL_RenderDebugText(ren, 16, (float)y, "Found in the ROM folder:"); y += 10;
-                snprintf(line, sizeof line, " Gauntlet 4 (Mega Drive): %s", g4s[roms.g4_kind]); LINE(line, roms.g4_kind == 1 ? 1 : roms.g4_kind ? 2 : 0);
-                snprintf(line, sizeof line, " Gauntlet (arcade):       %s", roms.have_g1 ? "found" : "not found"); LINE(line, roms.have_g1);
-                snprintf(line, sizeof line, " Gauntlet II (arcade):    %s", roms.have_g2 ? "found" : "not found"); LINE(line, roms.have_g2);
-                snprintf(line, sizeof line, " Deeper Dungeons (GAUNTLET III): %s%s", roms.atr_dd[0] ? "Atari disk" : roms.tap_dd[0] ? "C64 tape" : "not found",
-                         roms.atr_orig[0] ? " + Atari side 2" : roms.crt_orig[0] ? " + C64 Gauntlet" : ""); LINE(line, roms.atr_dd[0] || roms.tap_dd[0] ? 1 : 0);
-                snprintf(line, sizeof line, " Data: levels %s pictures %s voice %s", have_file(base, "gauntlet2_levels.bin") ? "ok" : "-",
-                         have_file(base, "g2_sprites.bin") ? "ok" : "-", have_file(base, "g2_speech.bin") ? "ok" : "-"); LINE(line, 0);
-                snprintf(line, sizeof line, "       attract %s effects %s music %s GAUNTLET III %s", have_file(base, "g2_attract.bin") ? "ok" : "-", have_file(base, "g2_sfx.bin") ? "ok" : "-", have_file(base, "g4_music.bin") ? "ok" : "-", have_file(base, "gauntlet3_levels.bin") ? "ok" : "-"); LINE(line, 0);
+                snprintf(line, sizeof line, " Gauntlet 4:      %s", g4s[roms.g4_kind]); LINE(line, roms.g4_kind == 1 ? 1 : roms.g4_kind ? 2 : 0);
+                snprintf(line, sizeof line, " Gauntlet:        %s", roms.have_g1 ? "found (arcade)" : "not found"); LINE(line, roms.have_g1);
+                snprintf(line, sizeof line, " Gauntlet II:     %s", roms.have_g2 ? "found (arcade)" : "not found"); LINE(line, roms.have_g2);
+                snprintf(line, sizeof line, " Deeper Dungeons: %s%s", roms.atr_dd[0] ? "Atari disk" : roms.tap_dd[0] ? "C64 tape" : "not found",
+                         roms.atr_orig[0] ? " +side 2" : roms.crt_orig[0] ? " +C64 cart" : ""); LINE(line, roms.atr_dd[0] || roms.tap_dd[0] ? 1 : 0);
+                y += 4;
+                SDL_SetRenderDrawColor(ren, 230, 200, 90, 255); SDL_RenderDebugText(ren, 16, (float)y, "Data files:"); y += 10;
+                snprintf(line, sizeof line, " levels %s   pictures %s   voice %s", OK("gauntlet2_levels.bin"), OK("g2_sprites.bin"), OK("g2_speech.bin")); LINE(line, 0);
+                snprintf(line, sizeof line, " effects %s  attract %s    music %s", OK("g2_sfx.bin"), OK("g2_attract.bin"), OK("g4_music.bin")); LINE(line, 0);
+                snprintf(line, sizeof line, " GAUNTLET III levels %s", OK("gauntlet3_levels.bin")); LINE(line, 0);
+                #undef OK
                 #undef LINE
             }
             (void)row;
             if (msg[0]) {                                  /* green when something was done, red for a problem */
                 int good = (strstr(msg, "built") || strstr(msg, "Recording")) && !strstr(msg, "FAIL");
-                SDL_SetRenderDrawColor(ren, good ? 120 : 255, good ? 230 : 140, 120, 255); SDL_RenderDebugText(ren, 16, 229, msg); }
+                SDL_SetRenderDrawColor(ren, good ? 120 : 255, good ? 230 : 140, 120, 255);
+                {   /* up to two lines of 38 columns, broken at a space */
+                    int l = (int)strlen(msg), cut = l;
+                    if (l > 38) { for (cut = 38; cut > 0 && msg[cut] != ' '; cut--) ; if (cut == 0) cut = 38; }
+                    snprintf(line, sizeof line, "%.*s", cut, msg); SDL_RenderDebugText(ren, 16, l > 38 ? 220 : 229, line);
+                    if (l > 38) { const char *r = msg + cut + (msg[cut] == ' '); snprintf(line, sizeof line, "%.38s", r); SDL_RenderDebugText(ren, 16, 229, line); }
+                } }
             SDL_RenderPresent(ren);
         }
         frame++;

@@ -1,6 +1,7 @@
 /* g4launch.h -- the launcher (see g4launch.c) */
 #ifndef G4LAUNCH_H
 #define G4LAUNCH_H
+#define GHOST_VERSION "0.1.1"          /* shown in the launcher and window titles, and by --version */
 #include <stdint.h>
 #include <stddef.h>
 typedef struct {

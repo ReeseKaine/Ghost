@@ -693,7 +693,7 @@ static void window_open(void)
             if (latency_frames < 2048) latency_frames = 2048;
         }
     }
-    win = SDL_CreateWindow("Gauntlet 4 (C build)", video_w, video_h, SDL_WINDOW_RESIZABLE | (getenv("G4HIDDEN") ? SDL_WINDOW_HIDDEN : 0));   /* centred
+    win = SDL_CreateWindow("Ghost " GHOST_VERSION, video_w, video_h, SDL_WINDOW_RESIZABLE | (getenv("G4HIDDEN") ? SDL_WINDOW_HIDDEN : 0));   /* centred
                                                           (G4HIDDEN: test aid, no window on the desktop) */
     if (win && video_display) {                          /* fullscreen: the display mode nearest the resolution;
                                                             borderless: a full-screen window at the desktop's own */
@@ -808,7 +808,7 @@ static void net_wait_events(void)
 static void window_title(void)
 {
     char t[64];
-    snprintf(t, sizeof t, "Gauntlet 4 (C build) -- online, player %d of %d", net_player + 1, net_players);
+    snprintf(t, sizeof t, "Ghost " GHOST_VERSION " -- online, player %d of %d", net_player + 1, net_players);
     SDL_SetWindowTitle(win, t);
 }
 
@@ -1627,6 +1627,7 @@ int main(int argc, char **argv)
 {
     FILE *f; int i, net_mode = 0, net_port = 0, net_want = 2, net_want_seat = 0, online_start = 0; char net_addr[256]; const char *colours_file = NULL, *g2_file = NULL;
     setvbuf(stderr, NULL, _IONBF, 0);                    /* messages at once, also into a pipe (Windows) */
+    if (argc == 2 && !strcmp(argv[1], "--version")) { printf("Ghost %s\n", GHOST_VERSION); return 0; }
     if (argc == 4 && !strcmp(argv[1], "--music-wav")) return music_to_wav(argv[2], argv[3]);   /* no ROM needed */
     if (argc == 3 && !strcmp(argv[1], "--scan")) return launch_scan_cli(argv[2]);              /* launcher: ROM finder */
     if (argc == 4 && !strcmp(argv[1], "--build-mazes")) {   /* data step (test): arcade_g2.json from a ROM folder */
