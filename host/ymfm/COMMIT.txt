@@ -1,0 +1,4 @@
+ymfm by Aaron Giles (BSD 3-Clause, see LICENSE), https://github.com/aaronsgiles/ymfm
+commit 81aec25ccbb98f4873a255f7551ac4dadac59b4a -- only the YM2151 (OPM) files are kept.
+Used by g2sfx.c (through ym2151_wrap.cpp) to record the Gauntlet II sound effects from the player's
+own ROM in "Build the data files"; nothing else in the port uses it.
