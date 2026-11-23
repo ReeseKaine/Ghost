@@ -1,0 +1,569 @@
+[
+ {
+  "g2": "01",
+  "meaning": "stun tile",
+  "confidence": "medium",
+  "uses": 467,
+  "g4": "NEW stun tile",
+  "category": "new",
+  "note": "stuns players standing on it"
+ },
+ {
+  "g2": "02",
+  "meaning": "wall",
+  "confidence": "certain",
+  "uses": 25519,
+  "g4": "09 wall",
+  "category": "direct",
+  "note": "Gauntlet 4 draws wall shapes from neighbours itself"
+ },
+ {
+  "g2": "03",
+  "meaning": "moveable wall",
+  "confidence": "high",
+  "uses": 182,
+  "g4": "NEW moveable wall",
+  "category": "new",
+  "note": "pushed by players"
+ },
+ {
+  "g2": "04",
+  "meaning": "wall variant (static 0x8000)",
+  "confidence": "low",
+  "uses": 197,
+  "g4": "09 wall",
+  "category": "adapt",
+  "note": "unidentified wall variant; plain wall until known"
+ },
+ {
+  "g2": "05",
+  "meaning": "destructible wall",
+  "confidence": "high",
+  "uses": 1516,
+  "g4": "10 destructible wall (3 stages: 10 -> 0F -> 0E)",
+  "category": "direct",
+  "note": "Gauntlet 4 already has it (shot table 0x8828: 0E-10 -> 0x8EBE subtracts shot damage, removes below 0E); G2 rule flag 0x800000 (one-shot walls) not carried over"
+ },
+ {
+  "g2": "06",
+  "meaning": "special coloured wall (static 0x8000)",
+  "confidence": "low",
+  "uses": 403,
+  "g4": "09 wall",
+  "category": "adapt",
+  "note": "unidentified coloured wall variant"
+ },
+ {
+  "g2": "07",
+  "meaning": "wall variant (static 0x8000)",
+  "confidence": "medium",
+  "uses": 1038,
+  "g4": "0e special wall (trap wall?)",
+  "category": "adapt",
+  "note": "hypothesis: 07/08/09 are the walls traps 0A/0B/0C remove; to verify"
+ },
+ {
+  "g2": "08",
+  "meaning": "wall variant (static 0x8000)",
+  "confidence": "medium",
+  "uses": 933,
+  "g4": "0f special wall (trap wall?)",
+  "category": "adapt",
+  "note": "see 07"
+ },
+ {
+  "g2": "09",
+  "meaning": "wall variant (static 0x8000)",
+  "confidence": "medium",
+  "uses": 1068,
+  "g4": "11 special wall (trap wall?)",
+  "category": "adapt",
+  "note": "see 07"
+ },
+ {
+  "g2": "0a",
+  "meaning": "trap",
+  "confidence": "high",
+  "uses": 167,
+  "g4": "14 trap",
+  "category": "direct",
+  "note": "removes trap walls"
+ },
+ {
+  "g2": "0b",
+  "meaning": "trap (variant)",
+  "confidence": "medium",
+  "uses": 179,
+  "g4": "15 trap",
+  "category": "adapt",
+  "note": "trap variant"
+ },
+ {
+  "g2": "0c",
+  "meaning": "trap (variant)",
+  "confidence": "medium",
+  "uses": 206,
+  "g4": "16 trap",
+  "category": "adapt",
+  "note": "trap variant"
+ },
+ {
+  "g2": "0d",
+  "meaning": "door",
+  "confidence": "high",
+  "uses": 1736,
+  "g4": "07 door",
+  "category": "direct",
+  "note": ""
+ },
+ {
+  "g2": "0e",
+  "meaning": "door",
+  "confidence": "high",
+  "uses": 1842,
+  "g4": "08 door",
+  "category": "direct",
+  "note": ""
+ },
+ {
+  "g2": "0f",
+  "meaning": "player start (one chosen at random; others removed)",
+  "confidence": "certain",
+  "uses": 134,
+  "g4": "fc player start",
+  "category": "direct",
+  "note": "7 mazes have several: the arcade picks one at random each time; import: the first, others floor (or random at load later)"
+ },
+ {
+  "g2": "10",
+  "meaning": "exit (with header flags: one random exit kept, others removed or made fake)",
+  "confidence": "certain",
+  "uses": 611,
+  "g4": "04 exit",
+  "category": "direct",
+  "note": "multiple exits stay; the random-exit/fake-exit rule (header flags) is a later NEW feature"
+ },
+ {
+  "g2": "11",
+  "meaning": "exit to 6",
+  "confidence": "certain",
+  "uses": 1,
+  "g4": "NEW exit to 6",
+  "category": "adapt",
+  "note": "Gauntlet 4 has exit to 4/8 (05/06); a general 'exit to N' is small"
+ },
+ {
+  "g2": "12",
+  "meaning": "ghost",
+  "confidence": "high",
+  "uses": 325,
+  "g4": "82 ghost (level 3)",
+  "category": "direct",
+  "note": "Gauntlet II places every monster at full strength (start colour = base, 3 health steps)"
+ },
+ {
+  "g2": "13",
+  "meaning": "grunt",
+  "confidence": "high",
+  "uses": 307,
+  "g4": "8a grunt (level 3)",
+  "category": "direct",
+  "note": "Gauntlet II places every monster at full strength (start colour = base, 3 health steps)"
+ },
+ {
+  "g2": "14",
+  "meaning": "demon",
+  "confidence": "high",
+  "uses": 144,
+  "g4": "92 demon (level 3)",
+  "category": "direct",
+  "note": "Gauntlet II places every monster at full strength (start colour = base, 3 health steps)"
+ },
+ {
+  "g2": "15",
+  "meaning": "lobber",
+  "confidence": "medium",
+  "uses": 264,
+  "g4": "a2 lobber (level 3)",
+  "category": "direct",
+  "note": "Gauntlet II places every monster at full strength (start colour = base, 3 health steps)"
+ },
+ {
+  "g2": "16",
+  "meaning": "sorcerer",
+  "confidence": "high",
+  "uses": 40,
+  "g4": "9a sorcerer (level 3)",
+  "category": "direct",
+  "note": "Gauntlet II places every monster at full strength (start colour = base, 3 health steps)"
+ },
+ {
+  "g2": "17",
+  "meaning": "grunt (second code, same picture and handler as 13)",
+  "confidence": "high",
+  "uses": 2,
+  "g4": "8a grunt (level 3)",
+  "category": "direct",
+  "note": "Gauntlet II places every monster at full strength (start colour = base, 3 health steps)"
+ },
+ {
+  "g2": "18",
+  "meaning": "death",
+  "confidence": "high",
+  "uses": 325,
+  "g4": "a8 death",
+  "category": "direct",
+  "note": ""
+ },
+ {
+  "g2": "19",
+  "meaning": "acid puddle",
+  "confidence": "high",
+  "uses": 364,
+  "g4": "NEW acid puddle",
+  "category": "new",
+  "note": "wandering hazard, magic only stuns"
+ },
+ {
+  "g2": "1a",
+  "meaning": "super sorcerer",
+  "confidence": "medium",
+  "uses": 196,
+  "g4": "NEW super sorcerer (fallback: sorcerer 9a)",
+  "category": "new",
+  "note": "teleports, shoots fireballs"
+ },
+ {
+  "g2": "1b",
+  "meaning": "IT",
+  "confidence": "high",
+  "uses": 25,
+  "g4": "NEW IT",
+  "category": "new",
+  "note": "tag: monsters chase whoever is IT"
+ },
+ {
+  "g2": "1c",
+  "meaning": "ghost generator, level 1",
+  "confidence": "certain",
+  "uses": 616,
+  "g4": "84 ghost generator level 1",
+  "category": "direct",
+  "note": "type from spawn table 0x5798A (used by spawn routine 0x49300); level from shot handlers"
+ },
+ {
+  "g2": "1d",
+  "meaning": "ghost generator, level 2",
+  "confidence": "certain",
+  "uses": 699,
+  "g4": "85 ghost generator level 2",
+  "category": "direct",
+  "note": "type from spawn table 0x5798A (used by spawn routine 0x49300); level from shot handlers"
+ },
+ {
+  "g2": "1e",
+  "meaning": "ghost generator, level 3",
+  "confidence": "certain",
+  "uses": 343,
+  "g4": "86 ghost generator level 3",
+  "category": "direct",
+  "note": "type from spawn table 0x5798A (used by spawn routine 0x49300); level from shot handlers"
+ },
+ {
+  "g2": "1f",
+  "meaning": "grunt generator, level 1",
+  "confidence": "certain",
+  "uses": 271,
+  "g4": "8c grunt generator level 1",
+  "category": "direct",
+  "note": "type from spawn table 0x5798A (used by spawn routine 0x49300); level from shot handlers"
+ },
+ {
+  "g2": "20",
+  "meaning": "grunt generator, level 2",
+  "confidence": "certain",
+  "uses": 268,
+  "g4": "8d grunt generator level 2",
+  "category": "direct",
+  "note": "type from spawn table 0x5798A (used by spawn routine 0x49300); level from shot handlers"
+ },
+ {
+  "g2": "21",
+  "meaning": "grunt generator, level 3",
+  "confidence": "certain",
+  "uses": 185,
+  "g4": "8e grunt generator level 3",
+  "category": "direct",
+  "note": "type from spawn table 0x5798A (used by spawn routine 0x49300); level from shot handlers"
+ },
+ {
+  "g2": "22",
+  "meaning": "demon generator, level 1",
+  "confidence": "certain",
+  "uses": 208,
+  "g4": "94 demon generator level 1",
+  "category": "direct",
+  "note": "type from spawn table 0x5798A (used by spawn routine 0x49300); level from shot handlers"
+ },
+ {
+  "g2": "23",
+  "meaning": "demon generator, level 2",
+  "confidence": "certain",
+  "uses": 138,
+  "g4": "95 demon generator level 2",
+  "category": "direct",
+  "note": "type from spawn table 0x5798A (used by spawn routine 0x49300); level from shot handlers"
+ },
+ {
+  "g2": "24",
+  "meaning": "demon generator, level 3",
+  "confidence": "certain",
+  "uses": 100,
+  "g4": "96 demon generator level 3",
+  "category": "direct",
+  "note": "type from spawn table 0x5798A (used by spawn routine 0x49300); level from shot handlers"
+ },
+ {
+  "g2": "25",
+  "meaning": "lobber generator, level 1",
+  "confidence": "certain",
+  "uses": 73,
+  "g4": "a4 lobber generator level 1",
+  "category": "direct",
+  "note": "type from spawn table 0x5798A (used by spawn routine 0x49300); level from shot handlers"
+ },
+ {
+  "g2": "26",
+  "meaning": "lobber generator, level 2",
+  "confidence": "certain",
+  "uses": 19,
+  "g4": "a5 lobber generator level 2",
+  "category": "direct",
+  "note": "type from spawn table 0x5798A (used by spawn routine 0x49300); level from shot handlers"
+ },
+ {
+  "g2": "27",
+  "meaning": "lobber generator, level 3",
+  "confidence": "certain",
+  "uses": 52,
+  "g4": "a6 lobber generator level 3",
+  "category": "direct",
+  "note": "type from spawn table 0x5798A (used by spawn routine 0x49300); level from shot handlers"
+ },
+ {
+  "g2": "28",
+  "meaning": "sorcerer generator, level 1",
+  "confidence": "certain",
+  "uses": 84,
+  "g4": "9c sorcerer generator level 1",
+  "category": "direct",
+  "note": "type from spawn table 0x5798A (used by spawn routine 0x49300); level from shot handlers"
+ },
+ {
+  "g2": "29",
+  "meaning": "sorcerer generator, level 2",
+  "confidence": "certain",
+  "uses": 99,
+  "g4": "9d sorcerer generator level 2",
+  "category": "direct",
+  "note": "type from spawn table 0x5798A (used by spawn routine 0x49300); level from shot handlers"
+ },
+ {
+  "g2": "2a",
+  "meaning": "sorcerer generator, level 3",
+  "confidence": "certain",
+  "uses": 63,
+  "g4": "9e sorcerer generator level 3",
+  "category": "direct",
+  "note": "type from spawn table 0x5798A (used by spawn routine 0x49300); level from shot handlers"
+ },
+ {
+  "g2": "2b",
+  "meaning": "grunt (second code 17) generator, level 1",
+  "confidence": "certain",
+  "uses": 19,
+  "g4": "8c grunt generator level 1",
+  "category": "direct",
+  "note": "type from spawn table 0x5798A (used by spawn routine 0x49300); level from shot handlers"
+ },
+ {
+  "g2": "2c",
+  "meaning": "grunt (second code 17) generator, level 2",
+  "confidence": "certain",
+  "uses": 48,
+  "g4": "8d grunt generator level 2",
+  "category": "direct",
+  "note": "type from spawn table 0x5798A (used by spawn routine 0x49300); level from shot handlers"
+ },
+ {
+  "g2": "2d",
+  "meaning": "grunt (second code 17) generator, level 3",
+  "confidence": "certain",
+  "uses": 12,
+  "g4": "8e grunt generator level 3",
+  "category": "direct",
+  "note": "type from spawn table 0x5798A (used by spawn routine 0x49300); level from shot handlers"
+ },
+ {
+  "g2": "2e",
+  "meaning": "treasure",
+  "confidence": "high",
+  "uses": 2305,
+  "g4": "1e treasure",
+  "category": "direct",
+  "note": ""
+ },
+ {
+  "g2": "2f",
+  "meaning": "solid object, probably locked treasure chest",
+  "confidence": "medium",
+  "uses": 234,
+  "g4": "NEW locked treasure chest",
+  "category": "new",
+  "note": "as 0f"
+ },
+ {
+  "g2": "30",
+  "meaning": "treasure (score scales with level)",
+  "confidence": "high",
+  "uses": 0,
+  "g4": "1c treasure (bonus multiplier)",
+  "category": "adapt",
+  "note": "arcade: points scale with level"
+ },
+ {
+  "g2": "31",
+  "meaning": "food",
+  "confidence": "high",
+  "uses": 363,
+  "g4": "22 food",
+  "category": "direct",
+  "note": ""
+ },
+ {
+  "g2": "32",
+  "meaning": "random food",
+  "confidence": "high",
+  "uses": 160,
+  "g4": "25 food",
+  "category": "adapt",
+  "note": "arcade: random food picture"
+ },
+ {
+  "g2": "33",
+  "meaning": "magic potion",
+  "confidence": "high",
+  "uses": 127,
+  "g4": "23 magic potion",
+  "category": "direct",
+  "note": "arcade may swap some for permanent power-up potions (picture 20fc) -> 26-2b"
+ },
+ {
+  "g2": "34",
+  "meaning": "magic potion",
+  "confidence": "high",
+  "uses": 32,
+  "g4": "24 magic potion",
+  "category": "direct",
+  "note": "see 33"
+ },
+ {
+  "g2": "35",
+  "meaning": "key",
+  "confidence": "high",
+  "uses": 679,
+  "g4": "1b key",
+  "category": "direct",
+  "note": ""
+ },
+ {
+  "g2": "36",
+  "meaning": "amulet: invisibility",
+  "confidence": "certain",
+  "uses": 32,
+  "g4": "1d invisibility",
+  "category": "direct",
+  "note": "Gauntlet 4 already has it"
+ },
+ {
+  "g2": "37",
+  "meaning": "amulet: repulsiveness",
+  "confidence": "certain",
+  "uses": 34,
+  "g4": "NEW amulet: repulsiveness",
+  "category": "new",
+  "note": "monsters flee"
+ },
+ {
+  "g2": "38",
+  "meaning": "amulet: reflective shots",
+  "confidence": "certain",
+  "uses": 68,
+  "g4": "NEW amulet: reflective shots",
+  "category": "new",
+  "note": "shots bounce off walls"
+ },
+ {
+  "g2": "39",
+  "meaning": "amulet: transportability",
+  "confidence": "certain",
+  "uses": 19,
+  "g4": "NEW amulet: transportability",
+  "category": "new",
+  "note": "walk through walls"
+ },
+ {
+  "g2": "3a",
+  "meaning": "amulet: super shots (x10)",
+  "confidence": "certain",
+  "uses": 66,
+  "g4": "NEW amulet: super shots",
+  "category": "new",
+  "note": "10 shots that go through monsters"
+ },
+ {
+  "g2": "3b",
+  "meaning": "amulet: invulnerability",
+  "confidence": "certain",
+  "uses": 29,
+  "g4": "NEW amulet: invulnerability",
+  "category": "new",
+  "note": "no damage, timed"
+ },
+ {
+  "g2": "3c",
+  "meaning": "dragon (4x4, special placement)",
+  "confidence": "high",
+  "uses": 0,
+  "g4": "NEW dragon",
+  "category": "new",
+  "note": "4x4, shoot the head"
+ },
+ {
+  "g2": "3d",
+  "meaning": "unused (picture 0bfc)",
+  "confidence": "-",
+  "uses": 0,
+  "g4": "drop",
+  "category": "drop",
+  "note": "no maze uses it"
+ },
+ {
+  "g2": "3e",
+  "meaning": "transporter",
+  "confidence": "high",
+  "uses": 205,
+  "g4": "13 transporter",
+  "category": "direct",
+  "note": "arcade: moves you to the closest visible transporter"
+ },
+ {
+  "g2": "3f",
+  "meaning": "force field",
+  "confidence": "high",
+  "uses": 180,
+  "g4": "NEW force field",
+  "category": "new",
+  "note": "switches on and off, hurts"
+ }
+]

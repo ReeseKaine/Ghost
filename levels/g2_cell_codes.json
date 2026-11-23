@@ -1,0 +1,322 @@
+{
+ "00": {
+  "name": "floor",
+  "confidence": "certain",
+  "evidence": "game"
+ },
+ "01": {
+  "name": "stun tile",
+  "confidence": "medium",
+  "evidence": "legend floor page, row STUN TILE"
+ },
+ "02": {
+  "name": "wall",
+  "confidence": "certain",
+  "evidence": "render + 25k uses"
+ },
+ "03": {
+  "name": "moveable wall",
+  "confidence": "high",
+  "evidence": "legend: MOVEABLE"
+ },
+ "04": {
+  "name": "wall variant (static 0x8000)",
+  "confidence": "low",
+  "evidence": "cell routine group"
+ },
+ "05": {
+  "name": "destructible wall",
+  "confidence": "high",
+  "evidence": "legend: DESTRUCTABLE"
+ },
+ "06": {
+  "name": "special coloured wall (static 0x8000)",
+  "confidence": "low",
+  "evidence": "render"
+ },
+ "07": {
+  "name": "wall variant (static 0x8000)",
+  "confidence": "medium",
+  "evidence": "render: wall"
+ },
+ "08": {
+  "name": "wall variant (static 0x8000)",
+  "confidence": "medium",
+  "evidence": "render: wall"
+ },
+ "09": {
+  "name": "wall variant (static 0x8000)",
+  "confidence": "medium",
+  "evidence": "render: wall"
+ },
+ "0a": {
+  "name": "trap",
+  "confidence": "high",
+  "evidence": "legend TRAP; touch handler 0x5124C shared with 0b/0c"
+ },
+ "0b": {
+  "name": "trap (variant)",
+  "confidence": "medium",
+  "evidence": "touch handler 0x5124C = trap's"
+ },
+ "0c": {
+  "name": "trap (variant)",
+  "confidence": "medium",
+  "evidence": "touch handler 0x5124C = trap's"
+ },
+ "0d": {
+  "name": "door",
+  "confidence": "high",
+  "evidence": "touch handler 0x51DE8 checks/spends a key ($90405A); placed in lines"
+ },
+ "0e": {
+  "name": "door",
+  "confidence": "high",
+  "evidence": "touch handler 0x51D9C checks/spends a key ($90405A); placed in lines"
+ },
+ "0f": {
+  "name": "player start (one chosen at random; others removed)",
+  "confidence": "certain",
+  "evidence": "0x43D8C(-1) at level start: counts 0F cells, picks random one -> $9049E0 (camera 0x46C5E), deletes the rest"
+ },
+ "10": {
+  "name": "exit (with header flags: one random exit kept, others removed or made fake)",
+  "confidence": "certain",
+  "evidence": "render EXIT; 0x43D8C(0): random exit -> $904A0A, others deleted or flagged fake (MOB word1 bit 4)"
+ },
+ "11": {
+  "name": "exit to 6",
+  "confidence": "certain",
+  "evidence": "render"
+ },
+ "12": {
+  "name": "ghost",
+  "confidence": "high",
+  "evidence": "touch handler: hint 8 SHOOT OR AVOID GHOSTS"
+ },
+ "13": {
+  "name": "grunt",
+  "confidence": "high",
+  "evidence": "touch handler: hint 9 SHOOT OR FIGHT GRUNTS"
+ },
+ "14": {
+  "name": "demon",
+  "confidence": "high",
+  "evidence": "touch handler: hint 10 demons; red demon sprite"
+ },
+ "15": {
+  "name": "lobber",
+  "confidence": "medium",
+  "evidence": "only monster type without contact hint (lobbers keep away); legend row"
+ },
+ "16": {
+  "name": "sorcerer",
+  "confidence": "high",
+  "evidence": "touch handler: hint 12 sorcerers, clears visibility bit"
+ },
+ "17": {
+  "name": "grunt (second code, same picture and handler as 13)",
+  "confidence": "high",
+  "evidence": "touch handler shared with 13"
+ },
+ "18": {
+  "name": "death",
+  "confidence": "high",
+  "evidence": "touch handler: hint 17 USE MAGIC TO KILL DEATH"
+ },
+ "19": {
+  "name": "acid puddle",
+  "confidence": "high",
+  "evidence": "touch handler: hint 15 AVOID ACID PUDDLES"
+ },
+ "1a": {
+  "name": "super sorcerer",
+  "confidence": "medium",
+  "evidence": "sorcerer picture (13a2), Death-type contact handler, special placement case"
+ },
+ "1b": {
+  "name": "IT",
+  "confidence": "high",
+  "evidence": "touch handler: hint 28 YOU ARE NOW IT"
+ },
+ "1c": {
+  "name": "ghost generator, level 1",
+  "confidence": "certain",
+  "evidence": "spawn table 0x5798A; shot handlers 0x524B4/0x524FC/0x5258E"
+ },
+ "1d": {
+  "name": "ghost generator, level 2",
+  "confidence": "certain",
+  "evidence": "spawn table 0x5798A; shot handlers 0x524B4/0x524FC/0x5258E"
+ },
+ "1e": {
+  "name": "ghost generator, level 3",
+  "confidence": "certain",
+  "evidence": "spawn table 0x5798A; shot handlers 0x524B4/0x524FC/0x5258E"
+ },
+ "1f": {
+  "name": "grunt generator, level 1",
+  "confidence": "certain",
+  "evidence": "spawn table 0x5798A; shot handlers 0x524B4/0x524FC/0x5258E"
+ },
+ "20": {
+  "name": "grunt generator, level 2",
+  "confidence": "certain",
+  "evidence": "spawn table 0x5798A; shot handlers 0x524B4/0x524FC/0x5258E"
+ },
+ "21": {
+  "name": "grunt generator, level 3",
+  "confidence": "certain",
+  "evidence": "spawn table 0x5798A; shot handlers 0x524B4/0x524FC/0x5258E"
+ },
+ "22": {
+  "name": "demon generator, level 1",
+  "confidence": "certain",
+  "evidence": "spawn table 0x5798A; shot handlers 0x524B4/0x524FC/0x5258E"
+ },
+ "23": {
+  "name": "demon generator, level 2",
+  "confidence": "certain",
+  "evidence": "spawn table 0x5798A; shot handlers 0x524B4/0x524FC/0x5258E"
+ },
+ "24": {
+  "name": "demon generator, level 3",
+  "confidence": "certain",
+  "evidence": "spawn table 0x5798A; shot handlers 0x524B4/0x524FC/0x5258E"
+ },
+ "25": {
+  "name": "lobber generator, level 1",
+  "confidence": "certain",
+  "evidence": "spawn table 0x5798A; shot handlers 0x524B4/0x524FC/0x5258E"
+ },
+ "26": {
+  "name": "lobber generator, level 2",
+  "confidence": "certain",
+  "evidence": "spawn table 0x5798A; shot handlers 0x524B4/0x524FC/0x5258E"
+ },
+ "27": {
+  "name": "lobber generator, level 3",
+  "confidence": "certain",
+  "evidence": "spawn table 0x5798A; shot handlers 0x524B4/0x524FC/0x5258E"
+ },
+ "28": {
+  "name": "sorcerer generator, level 1",
+  "confidence": "certain",
+  "evidence": "spawn table 0x5798A; shot handlers 0x524B4/0x524FC/0x5258E"
+ },
+ "29": {
+  "name": "sorcerer generator, level 2",
+  "confidence": "certain",
+  "evidence": "spawn table 0x5798A; shot handlers 0x524B4/0x524FC/0x5258E"
+ },
+ "2a": {
+  "name": "sorcerer generator, level 3",
+  "confidence": "certain",
+  "evidence": "spawn table 0x5798A; shot handlers 0x524B4/0x524FC/0x5258E"
+ },
+ "2b": {
+  "name": "grunt (second code 17) generator, level 1",
+  "confidence": "certain",
+  "evidence": "spawn table 0x5798A; shot handlers 0x524B4/0x524FC/0x5258E"
+ },
+ "2c": {
+  "name": "grunt (second code 17) generator, level 2",
+  "confidence": "certain",
+  "evidence": "spawn table 0x5798A; shot handlers 0x524B4/0x524FC/0x5258E"
+ },
+ "2d": {
+  "name": "grunt (second code 17) generator, level 3",
+  "confidence": "certain",
+  "evidence": "spawn table 0x5798A; shot handlers 0x524B4/0x524FC/0x5258E"
+ },
+ "2e": {
+  "name": "treasure",
+  "confidence": "high",
+  "evidence": "legend TREASURE; touch 0x519C2 with treasure-room checks"
+ },
+ "2f": {
+  "name": "solid object, probably locked treasure chest",
+  "confidence": "medium",
+  "evidence": "touch handler 0x51E60 (blocking); legend TREASURE row"
+ },
+ "30": {
+  "name": "treasure (score scales with level)",
+  "confidence": "high",
+  "evidence": "touch 0x51998: points from $904B56 / 1000"
+ },
+ "31": {
+  "name": "food",
+  "confidence": "high",
+  "evidence": "legend: FOOD"
+ },
+ "32": {
+  "name": "random food",
+  "confidence": "high",
+  "evidence": "legend + random picture"
+ },
+ "33": {
+  "name": "magic potion",
+  "confidence": "high",
+  "evidence": "touch 0x5162E"
+ },
+ "34": {
+  "name": "magic potion",
+  "confidence": "high",
+  "evidence": "touch 0x5162E"
+ },
+ "35": {
+  "name": "key",
+  "confidence": "high",
+  "evidence": "touch 0x51458: key counters $904055/$90405A"
+ },
+ "36": {
+  "name": "amulet: invisibility",
+  "confidence": "certain",
+  "evidence": "pickup message 6"
+ },
+ "37": {
+  "name": "amulet: repulsiveness",
+  "confidence": "certain",
+  "evidence": "pickup message 7"
+ },
+ "38": {
+  "name": "amulet: reflective shots",
+  "confidence": "certain",
+  "evidence": "pickup message 8"
+ },
+ "39": {
+  "name": "amulet: transportability",
+  "confidence": "certain",
+  "evidence": "pickup message 9"
+ },
+ "3a": {
+  "name": "amulet: super shots (x10)",
+  "confidence": "certain",
+  "evidence": "pickup message 10; adds 11 to the shot counter"
+ },
+ "3b": {
+  "name": "amulet: invulnerability",
+  "confidence": "certain",
+  "evidence": "pickup message 11"
+ },
+ "3c": {
+  "name": "dragon (4x4, special placement)",
+  "confidence": "high",
+  "evidence": "sprite + cell routine"
+ },
+ "3d": {
+  "name": "unused (picture 0bfc)",
+  "confidence": "-",
+  "evidence": "no maze uses it"
+ },
+ "3e": {
+  "name": "transporter",
+  "confidence": "high",
+  "evidence": "touch 0x513AE checks transporter state $904BCE; red star tile"
+ },
+ "3f": {
+  "name": "force field",
+  "confidence": "high",
+  "evidence": "legend: FORCE FIELD"
+ }
+}
